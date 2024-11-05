@@ -1,0 +1,56 @@
+<div class="col-md-4 offset-md-4">
+    <div class="card bg-card">
+        <div class="card-body">
+
+            <form>
+                <div class="form-group mt-3">
+                    <label class="form-label">Nombre(s)</label> 
+                    <input type="text" name="nombre" [(ngModel)]="alumno.nombre" 
+                        class="form-control" autofocus>
+                </div>
+                <div class="form-group mt-3">
+                    <label class="form-label">Correo</label> 
+                    <input type="email" name="correo" [(ngModel)]="alumno.correo" placeholder="alumno@email.com"
+                        class="form-control">
+                </div>
+
+                <div class="form-group mt-3">
+                    <label class="form-label">Materia</label> 
+                    <input type="text" name="materia" [(ngModel)]="alumno.materia"
+                        class="form-control">
+                </div>
+
+
+                <div class="col-md-5 mt-3 mx-auto text-center">
+                    <label class="form-label">Calificación</label>
+                    <select class="form-select" name="calificacion" [(ngModel)]="alumno.calificacion" required>
+                        <option selected disabled value=""> Elegir </option>
+                        <option value="0">0</option>
+                        <option value="1">1</option>
+                        <option value="2">2</option>
+                        <option value="3">3</option>
+                        <option value="4">4</option>
+                        <option value="5">5</option>
+                        <option value="6">6</option>
+                        <option value="7">7</option>
+                        <option value="8">8</option>
+                        <option value="9">9</option>
+                        <option value="10">10</option>
+                    </select>
+                    <div class="invalid-feedback">
+                        Por favor seleccione una calificación
+                    </div>
+                </div>
+
+
+                <div class="text-center">
+                    <!--Si edit es TRUE se edita y sino lo GUARDA-->
+                    <button class="btn btn-success btn-block mt-5" (click)="edit ? updateAlumno() : saveNewAlumno()">
+                        Guardar
+                    </button>
+                </div>
+            </form>
+
+        </div>
+    </div>
+</div>

@@ -1,0 +1,10 @@
+.bodyLogin {
+	background: linear-gradient(
+		90deg,
+		rgb(172, 200, 216) 26%,
+		rgba(191, 245, 247, 0.44) 47%,
+		rgb(88, 119, 117) 83%
+	);
+	height: auto; /* 100 por ciento del alto del dispositivo*/
+	width: auto; /* 100 por ciento del alto del dispositivo*/
+}

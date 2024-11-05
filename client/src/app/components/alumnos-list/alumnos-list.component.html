@@ -1,0 +1,41 @@
+<!--Se crea una targeta de boostrap con 4 columnas para cada alumno-->
+<div class="col-md-4 mt-2"  *ngFor="let alumno of alumnos"> 
+
+    <div class="card text-center">
+
+        <!--Encabezado de la targeta-->
+        <div class="card-header bg-info bg-opacity-50 text-black d-flex justify-content-between aling-items-center" >
+
+            <!--Se pone el nombre del alumno-->
+            <p> Nombre: <strong> {{alumno.nombre}} </strong> </p>
+            
+
+            <!--Botón para eliminar-->
+            <button class="btn btn-danger" (click)="deleteAlumno(alumno.alumnoID)">
+                <i class="far fa-trash-alt"></i>
+            </button>
+
+        </div>
+
+        
+        <!--Cuerpo de la targeta-->
+        <div class="card-body bg-bodyCard ">
+
+            <!--Se muestra el materia del alumno-->
+            <p>Materia: <strong>{{alumno.materia}}</strong> </p> 
+
+            <!--Se muestra el correo del alumno-->
+            <p>Calificación: <strong>{{alumno.calificacion}}</strong> </p>             
+
+            <!--Se muestra el correo del alumno-->
+            <p>Correo: <strong>{{alumno.correo}}</strong> </p> 
+
+            <!--Se redirecciona a la pagina de edicion-->
+            <a [routerLink]="['/home/alumnos/edit/',alumno.alumnoID]" class="btn btn-success  btn-block"  >
+                Editar
+            </a>
+        </div>
+
+    </div>
+
+</div>

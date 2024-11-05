@@ -1,0 +1,33 @@
+<div class="bodyLogin">
+    <section class="vh-100 gradient-custom">
+        <div class="container py-2 h-100">
+            <div class="row d-flex justify-content-center align-items-center h-100">
+                <div class="col-12 col-md-8 col-lg-6 col-xl-5">
+                    <div class="card bg-primary text-white" style="border-radius: 1rem;">
+                        <div class="card-body p-5 text-center">
+
+                            <div class="mb-md-5 mt-md-4 pb-2">
+
+                                <h2 class="fw-bold mb-2 text-uppercase">Inicio de sesión</h2>
+                                <p class="text-white mb-5 ">¡Por favor, introduzca su nombre de usuario y contraseña!</p>
+
+                                <div data-mdb-input-init class="form-outline form-white mb-4">
+                                    <input [(ngModel)]="usuario.correo" type="email" name="correo" placeholder="Correo" class="form-control form-control-lg"  />
+                                    
+                                </div>
+
+                                <div data-mdb-input-init class="form-outline form-white mb-4"> 
+                                    <input [(ngModel)]="usuario.password" type="password" placeholder="Contraseña" name="password" class="form-control form-control-lg" />
+                                </div>
+
+                                <button (click)="logueo()" data-mdb-button-init data-mdb-ripple-init class="btn btn-outline-light btn-lg px-5" type="submit">Inicio de sesión</button>
+
+                            </div>
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+</div>
