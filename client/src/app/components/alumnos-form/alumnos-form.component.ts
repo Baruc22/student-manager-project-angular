@@ -19,7 +19,7 @@ export class AlumnosFormComponent implements OnInit {
 
   //Se define el objeto que va almacenar la información
   alumno = new Alumno()
-
+  profesorID: number;
   //Para saber si se trata de guardar o editarl información
   edit: boolean = false
 
@@ -29,7 +29,9 @@ export class AlumnosFormComponent implements OnInit {
     private activatedRoute: ActivatedRoute,
     private location: Location
 
-  ) { }
+  ) {
+    this.profesorID = 0;
+   }
 
 
   ngOnInit(): void {
@@ -42,6 +44,8 @@ export class AlumnosFormComponent implements OnInit {
         this.edit = true;
       });
     }
+
+    this.profesorID = Number(localStorage.getItem('profesorID'));
   }
 
   //Metodo que permite guardar un nuevo dato al presionar el boton 'Guardar'
@@ -57,6 +61,8 @@ export class AlumnosFormComponent implements OnInit {
       this.alumno.estatus = 'Reprobado';
     }
 
+    this.alumno.profesorID = this.profesorID
+    
     //Hacer la validación de los datos
     if (this.alumno.nombre == '' || this.alumno.calificacion == '' || this.alumno.correo == '' || this.alumno.materia == '') {
       Swal.fire({
