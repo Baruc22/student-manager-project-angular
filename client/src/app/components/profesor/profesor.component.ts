@@ -28,8 +28,8 @@ export class ProfesorComponent implements OnInit {
       this.profesorID = Number(params.get('profesorID'))
 
       this.profesoresService.getProfesor(this.profesorID).subscribe({
-        next: (resProgesor: any) => {
-          this.profesor = resProgesor
+        next: (resProfesor: any) => {
+          this.profesor = resProfesor
         },
         error: err => console.log(err)
       });

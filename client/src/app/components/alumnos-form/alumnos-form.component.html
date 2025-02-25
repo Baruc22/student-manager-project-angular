@@ -1,56 +1,73 @@
 <div class="col-md-4 offset-md-4">
     <div class="card bg-card">
+        <div class="card-head text-center">
+            <div *ngIf="edit else registrar">
+                <i class="bi bi-pencil-fill fs-2"></i>
+            </div>
+            <ng-template #registrar>
+                <i class="bi bi-person-fill-add fs-1"></i>
+            </ng-template>
+        </div>
         <div class="card-body">
 
             <form>
                 <div class="form-group mt-3">
-                    <label class="form-label">Nombre(s)</label> 
-                    <input type="text" name="nombre" [(ngModel)]="alumno.nombre" 
-                        class="form-control" autofocus>
+                    <label class="form-label"><strong>Nombre(s)</strong></label>
+                    <input type="text" name="nombre" [(ngModel)]="alumno.nombre" class="form-control" autofocus>
                 </div>
                 <div class="form-group mt-3">
-                    <label class="form-label">Correo</label> 
+                    <label class="form-label"><strong>Correo</strong></label>
                     <input type="email" name="correo" [(ngModel)]="alumno.correo" placeholder="alumno@email.com"
                         class="form-control">
                 </div>
 
                 <div class="form-group mt-3">
-                    <label class="form-label">Materia</label> 
-                    <input type="text" name="materia" [(ngModel)]="alumno.materia"
-                        class="form-control">
+                    <label class="form-label"><strong>Materia</strong></label>
+                    <input type="text" name="materia" [(ngModel)]="alumno.materia" class="form-control">
                 </div>
 
 
-                <div class="col-md-5 mt-3 mx-auto text-center">
-                    <label class="form-label">Calificación</label>
-                    <select class="form-select" name="calificacion" [(ngModel)]="alumno.calificacion" required>
-                        <option selected disabled value=""> Elegir </option>
-                        <option value="0">0</option>
-                        <option value="1">1</option>
-                        <option value="2">2</option>
-                        <option value="3">3</option>
-                        <option value="4">4</option>
-                        <option value="5">5</option>
-                        <option value="6">6</option>
-                        <option value="7">7</option>
-                        <option value="8">8</option>
-                        <option value="9">9</option>
-                        <option value="10">10</option>
-                    </select>
-                    <div class="invalid-feedback">
-                        Por favor seleccione una calificación
+                <div class=" mt-3 mx-auto text-center d-flex justify-content-center gap-3">
+                    <div>
+                        <select class="form-select" name="calificacion" [(ngModel)]="alumno.calificacion" required>
+                            <option selected value=""> Calificación </option>
+                            <option value="0">0</option>
+                            <option value="1">1</option>
+                            <option value="2">2</option>
+                            <option value="3">3</option>
+                            <option value="4">4</option>
+                            <option value="5">5</option>
+                            <option value="6">6</option>
+                            <option value="7">7</option>
+                            <option value="8">8</option>
+                            <option value="9">9</option>
+                            <option value="10">10</option>
+                        </select>
+                    </div>
+
+                    <div style="align-content: center;">
+                        
+                        <div *ngIf=" convertir(alumno.calificacion)  >= 6; else reprobado">
+                            <div style="color: #038C4C; background: white; padding: 5px; border-radius: 5px;" ><strong>Aprobado</strong></div>
+                        </div>
+
+                        <ng-template #reprobado>
+                            <div style="color: #E30032; background: white; padding: 5px; border-radius: 5px;"><strong>Reprobado</strong></div>
+                        </ng-template>
                     </div>
                 </div>
 
-
-                <div class="text-center">
-                    <!--Si edit es TRUE se edita y sino lo GUARDA-->
-                    <button class="btn btn-success btn-block mt-5" (click)="edit ? updateAlumno() : saveNewAlumno()">
+                <div class="d-flex justify-content-center mt-3">
+                    <!--Si edit es TRUE se realiza la operacion de EDITAR y sino se GUARDA como uno nuevo-->
+                    <button class="btn btn-success btn-block" (click)="edit ? updateAlumno() : saveNewAlumno()">
                         Guardar
                     </button>
+                    <button class="btn btn-danger btn-block" (click)="botonCancelar()">
+                        Cancelar
+                    </button>
                 </div>
-            </form>
 
+            </form>
         </div>
     </div>
 </div>

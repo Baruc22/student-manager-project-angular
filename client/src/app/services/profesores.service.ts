@@ -23,6 +23,8 @@ export class ProfesoresService {
     return this.http.put(`${this.API_URI}/profesores/${id}`,updatedProfesor);
   }
 
-  
+  saveProfesor(profesor: Profesor){
+    return this.http.post(`${this.API_URI}/profesores`,profesor);
+  }
 
 }

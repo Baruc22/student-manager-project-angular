@@ -1,5 +1,5 @@
 export class Profesor {
-	profesorID: number
+	profesorID?: number
 	nombre: string
     correo: string
     password: string

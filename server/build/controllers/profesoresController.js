@@ -17,8 +17,8 @@ const database_1 = __importDefault(require("../database"));
 class ProfesoresController {
     list(req, res) {
         return __awaiter(this, void 0, void 0, function* () {
-            const games = yield database_1.default.query('SELECT * FROM profesores');
-            res.json(games);
+            const profesores = yield database_1.default.query('SELECT * FROM profesores');
+            res.json(profesores);
         });
     }
     existe(req, res) {
@@ -37,10 +37,10 @@ class ProfesoresController {
     getOne(req, res) {
         return __awaiter(this, void 0, void 0, function* () {
             const { id } = req.params;
-            const games = yield database_1.default.query('SELECT * FROM profesores WHERE profesorID = ?', [id]);
-            console.log(games);
-            if (games.length > 0) {
-                return res.json(games[0]);
+            const profesor = yield database_1.default.query('SELECT * FROM profesores WHERE profesorID = ?', [id]);
+            console.log(profesor);
+            if (profesor.length > 0) {
+                return res.json(profesor[0]);
             }
             res.status(400).json({ Text: "El profesor no existe" });
         });

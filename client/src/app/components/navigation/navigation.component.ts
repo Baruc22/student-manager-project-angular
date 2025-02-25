@@ -9,7 +9,7 @@ import { DatosProfesorService } from 'src/app/services/datos-profesor.service';
 })
 export class NavigationComponent implements OnInit {
 
-  profesorID: number = 0
+  profesorID: any = ''
 
   constructor(
     private datosProfesorService: DatosProfesorService,

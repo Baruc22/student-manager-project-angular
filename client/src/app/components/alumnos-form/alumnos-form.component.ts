@@ -1,6 +1,6 @@
 import { Component, HostBinding, OnInit } from '@angular/core';
 import { ActivatedRoute, Router, TitleStrategy } from '@angular/router';
-
+import { Location } from '@angular/common';
 
 import { Alumno } from 'src/app/models/alumno.model';
 import { AlumnosService } from 'src/app/services/alumnos.service';
@@ -12,6 +12,7 @@ import Swal from 'sweetalert2';
   templateUrl: './alumnos-form.component.html',
   styleUrls: ['./alumnos-form.component.css']
 })
+
 export class AlumnosFormComponent implements OnInit {
 
   @HostBinding('class') classes = 'row'; //Se agrega la clase 'row' al componente.
@@ -25,7 +26,8 @@ export class AlumnosFormComponent implements OnInit {
   constructor(
     private alumnosService: AlumnosService,
     private router: Router,
-    private activatedRoute: ActivatedRoute
+    private activatedRoute: ActivatedRoute,
+    private location: Location
 
   ) { }
 
@@ -47,6 +49,14 @@ export class AlumnosFormComponent implements OnInit {
 
     console.log(this.alumno);
 
+    const calificacion = Number(this.alumno.calificacion)
+
+    if (calificacion >= 6) {
+      this.alumno.estatus = 'Aprobado';
+    } else {
+      this.alumno.estatus = 'Reprobado';
+    }
+
     //Hacer la validación de los datos
     if (this.alumno.nombre == '' || this.alumno.calificacion == '' || this.alumno.correo == '' || this.alumno.materia == '') {
       Swal.fire({
@@ -56,7 +66,7 @@ export class AlumnosFormComponent implements OnInit {
       });
     } else {
 
-      //Estos datos se definen cuando llegan a la BD por eso se eliminan aquí
+      //Este dato se define cuando llega a la BD por eso se eliminan aquí
       delete this.alumno.alumnoID;
 
       //Se llama al servicio para guardar la nueva información del alumno
@@ -95,6 +105,13 @@ export class AlumnosFormComponent implements OnInit {
       if (result.isConfirmed) {
 
         console.log(this.alumno);
+        const calificacion = Number(this.alumno.calificacion)
+
+        if (calificacion >= 6) {
+          this.alumno.estatus = 'Aprobado';
+        } else {
+          this.alumno.estatus = 'Reprobado';
+        }
 
         //Hacer la validacion de datos
         if (this.alumno.nombre == '' || this.alumno.calificacion == '' || this.alumno.correo == '' || this.alumno.materia == '') {
@@ -121,10 +138,31 @@ export class AlumnosFormComponent implements OnInit {
 
       } else if (result.isDenied) {
         Swal.fire("Cambios sin guardar", "", "info");
-        this.router.navigateByUrl('/home/alumnos')
+        this.router.navigateByUrl('/home/alumnos');
       }
     });
 
+  }
+
+  botonCancelar() {
+    Swal.fire({
+      title: "¿Estas seguro?",
+      icon: "warning",
+      showCancelButton: true,
+      confirmButtonColor: "#3085d6",
+      cancelButtonColor: "#009455",
+      confirmButtonText: "Si",
+      cancelButtonText: "Volver"
+    }).then((result) => {
+      if (result.isConfirmed) {
+
+        this.location.back();
+      }
+    });
+  }
+
+  convertir(num: any) {
+    return parseInt(num, 10);
   }
 
 }

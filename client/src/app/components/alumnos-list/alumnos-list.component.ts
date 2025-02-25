@@ -1,4 +1,6 @@
 import { Component, HostBinding, OnInit } from '@angular/core';
+import { ActivatedRoute } from '@angular/router';
+import { Alumno } from 'src/app/models/alumno.model';
 import { AlumnosService } from 'src/app/services/alumnos.service';
 import Swal from 'sweetalert2';
 
@@ -11,19 +13,53 @@ export class AlumnosListComponent implements OnInit {
 
   @HostBinding('class') classes = 'row'; //Se agrega la clase 'row' al componente.
   alumnos: any = [];
+  alumnosRespaldo: any = [];
+  alumnosFiltrados: any = [];
+  materias: any = [];
+  searchAlumno: string = '';
+  selectMateria: string = '';
+  selectEstatus: string = '';
+  alumnoEncontrado: boolean = true;
+  profesorID: number;
+
 
   constructor(
-    private alumnosService: AlumnosService
-  ){}
+    private alumnosService: AlumnosService,
+    private router: ActivatedRoute
+  ){ 
+    this.profesorID = 0;
+   }
 
   ngOnInit(): void {
-    this.getAlumnos()
+
+    this.profesorID = Number(localStorage.getItem('profesorID'));
+
+    this.getAlumnosPorProfesor()
+    this.obtenerMaterias()
   }
 
-  getAlumnos(){
-    this.alumnosService.getAlumnos().subscribe({
+  getAlumnosPorProfesor(){
+    this.alumnosService.getAlumnosPorProfesor(this.profesorID).subscribe({
       next: res => {
         this.alumnos = res; //almacena los alumnos que se obtienen de la BD
+        this.alumnosRespaldo = res;
+      },
+      error: err => console.log(err)
+    });
+  }
+
+  getAlumnoSearch(){
+    console.log(this.searchAlumno);
+    this.alumnosService.getAlumnoSearch(this.searchAlumno).subscribe({
+      next: res => {
+
+        if (res!=-1){
+          this.alumnos = res
+          this.alumnoEncontrado = true;
+        }else{
+          this.alumnoEncontrado = false;
+        }
+        
       },
       error: err => console.log(err)
     });
@@ -60,7 +96,7 @@ export class AlumnosListComponent implements OnInit {
             });
 
             //Se llama al metodo para obtener nuevamente la lista de alumnos y actualizar la vista
-            this.getAlumnos();
+            this.getAlumnosPorProfesor();
           }, //Captura la generación de algún error
           error: err => console.log(err)
         });       
@@ -68,6 +104,34 @@ export class AlumnosListComponent implements OnInit {
     });
   }
 
+  obtenerMaterias(){    
+    this.alumnosService.listaMaterias().subscribe({
+      next: res => {
+        this.materias = res;
+        console.log(this.materias)
+      },
+      error: err => console.log(err)
+    });
+
+  }
+
+  filtroAlumnos(){
+    console.log('filtro');
+
+    this.searchAlumno = '';
+
+    if(this.selectEstatus === '' || this.selectMateria === ''){
+      this.alumnos = this.alumnosRespaldo;
+    }
+
+    this.alumnosFiltrados = this.alumnos.filter((alumno: Alumno) =>
+      (this.selectMateria === alumno.materia || this.selectMateria === '') &&
+      (this.selectEstatus === alumno.estatus || this.selectEstatus === '')
+    );
+
+    this.alumnos = this.alumnosFiltrados;
+
+  }
 
 }
 

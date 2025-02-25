@@ -16,6 +16,7 @@ import { AlumnosListComponent } from './components/alumnos-list/alumnos-list.com
 import { AlumnosFormComponent } from './components/alumnos-form/alumnos-form.component';
 import { AlumnosService } from './services/alumnos.service';
 import { ProfesorComponent } from './components/profesor/profesor.component';
+import { RegisterFormComponent } from './register-form/register-form.component';
 
 @NgModule({
   declarations: [
@@ -25,7 +26,8 @@ import { ProfesorComponent } from './components/profesor/profesor.component';
     NavigationComponent,
     AlumnosListComponent,
     AlumnosFormComponent,
-    ProfesorComponent
+    ProfesorComponent,
+    RegisterFormComponent
   ],
   imports: [
     BrowserModule,

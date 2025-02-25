@@ -4,8 +4,8 @@ import pool from '../database'
 class ProfesoresController{
 
     public async list(req: Request,res: Response) {
-        const games = await pool.query('SELECT * FROM profesores');
-        res.json(games);
+        const profesores = await pool.query('SELECT * FROM profesores');
+        res.json(profesores);
     }
 
     public async existe(req: Request, res: Response): Promise<void> {
@@ -22,10 +22,10 @@ class ProfesoresController{
 
     public async getOne(req: Request,res: Response): Promise<any> {
         const {id} = req.params;
-        const games = await pool.query('SELECT * FROM profesores WHERE profesorID = ?',[id]);
-        console.log(games);
-        if(games.length > 0){
-            return res.json(games[0]);
+        const profesor = await pool.query('SELECT * FROM profesores WHERE profesorID = ?',[id]);
+        console.log(profesor);
+        if(profesor.length > 0){
+            return res.json(profesor[0]);
         }
         res.status(400).json({Text: "El profesor no existe"});
     }

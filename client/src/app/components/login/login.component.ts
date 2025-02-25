@@ -31,12 +31,13 @@ export class LoginComponent implements OnInit {
   logueo(): void {
     this.profesoresService.existe(this.usuario.correo, this.usuario.password).subscribe((resProfesor: any) => {
       if (resProfesor != -1) {
+        
         this.profesor.correo = this.usuario.correo
         localStorage.setItem('profesorID', resProfesor.profesorID);
         
         this.datosProfesorService.setDatosPersonales(resProfesor.profesorID);
-
         this.router.navigateByUrl('/home/profesor/' + resProfesor.profesorID);
+
       } else {
         Swal.fire({
           position: 'center',
@@ -47,6 +48,10 @@ export class LoginComponent implements OnInit {
     },
       err => console.error(err)
     );
+  }
+
+  registro(){
+    this.router.navigateByUrl('/registro');
   }
 
 }

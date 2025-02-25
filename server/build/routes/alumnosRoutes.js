@@ -13,6 +13,9 @@ class AlumnosRoutes {
     config() {
         this.router.get('/', alumnosController_1.default.list);
         this.router.get('/:id', alumnosController_1.default.getOne);
+        this.router.get('/profesor/:profesorID', alumnosController_1.default.getAlumnoByProfesor);
+        this.router.get('/lista/materias', alumnosController_1.default.listMaterias); //*
+        this.router.get('/search/:data', alumnosController_1.default.getAlumnoSearch);
         this.router.post('/', alumnosController_1.default.create);
         this.router.delete('/:id', alumnosController_1.default.delete);
         this.router.put('/:id', alumnosController_1.default.update);
