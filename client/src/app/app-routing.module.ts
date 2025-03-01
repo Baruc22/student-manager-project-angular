@@ -6,7 +6,7 @@ import { AlumnosListComponent } from './components/alumnos-list/alumnos-list.com
 import { AlumnosFormComponent } from './components/alumnos-form/alumnos-form.component';
 import { ProfesorComponent } from './components/profesor/profesor.component';
 import { authGuard } from './auth.guard';
-import { RegisterFormComponent } from './register-form/register-form.component';
+import { RegisterFormComponent } from './components/register-form/register-form.component';
 
 const routes: Routes = [
   {

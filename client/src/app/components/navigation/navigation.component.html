@@ -16,20 +16,20 @@
                 <!--routerLink: permite la navegación entre las rutas definidas en 'app-routing'-->
                 <!--routerLinkActive: colorea la etiqueta para indicar que nos encontramos en esa ruta-->
                 <li class="nav-item mx-3">
-                  <a class="nav-link text-black options rounded-2" routerLink="/home/profesor/{{profesorID}}" routerLinkActive="active">Inicio</a>
+                  <button type="button" class="btn btn-light" (click)="buttonHome()" >Inicio</button>
                 </li>
 
                 <li class="nav-item mx-3">
-                  <a class="nav-link text-black options rounded-2" routerLink="/home/alumnos" routerLinkActive="active">Alumnos</a>
+                  <button type="button" class="btn btn-light" (click)="buttonListAlumnos()" >Alumnos</button>
                 </li>
 
-                <li class="nav-item mx-3">
-                  <a class="nav-link text-black options rounded-2" routerLink="/home/alumnos/add" routerLinkActive="active">Agregar alumno</a>
+                <li class="nav-item mx-3">                  
+                  <button type="button" class="btn btn-light" (click)="buttonAddAlumnos()" >Agregar alumnos</button>
                 </li> 
               </ul>
 
-              <div style="margin-left: auto;">
-                <a class="nav-link text-black options rounded-2 p-2" (click)="cerrarSesion()" >Cerrar sesión</a>
+              <div style="margin-left: auto;">                
+                <button type="button" class="btn btn-success" (click)="cerrarSesion()" title="Cerrar sesión"><i class="bi bi-power"></i></button>
               </div>
               
             </div>

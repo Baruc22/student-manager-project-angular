@@ -23,8 +23,18 @@
                                     <input [(ngModel)]="profesor.correo" type="email" name="correo" placeholder="Correo" class="form-control form-control-lg"  />
                                 </div>
 
-                                <div data-mdb-input-init class="form-outline form-white mb-4"> 
-                                    <input [(ngModel)]="profesor.password" type="password" name="password" placeholder="Contraseña"  class="form-control form-control-lg" />
+                                <div data-mdb-input-init class="form-outline form-white input-group mb-4"> 
+                                    <input [(ngModel)]="password" [type]="verPassword ? 'text' : 'password' " name="password" placeholder="Contraseña"  class="form-control form-control-lg" />
+                                    <button class="btn btn-secondary" type="button" (click)="mostrarPassword()">
+                                        <i class="bi" [ngClass]="verPassword ? 'bi-eye-slash' :'bi-eye' "></i>
+                                    </button>
+                                </div>
+
+                                <div data-mdb-input-init class="form-outline form-white input-group mb-4"> 
+                                    <input [(ngModel)]="passwordConfirm" [type]="verPasswordConfirm ? 'text' : 'password' " name="password" placeholder="Confirmar contraseña"  class="form-control form-control-lg" />
+                                    <button class="btn btn-secondary" type="button" (click)="mostrarPasswordConfirt()">
+                                        <i class="bi" [ngClass]="verPasswordConfirm ? 'bi-eye-slash' :'bi-eye' "></i>
+                                    </button>
                                 </div>
                                 
                                 <button (click)="registro()" data-mdb-button-init data-mdb-ripple-init class="btn btn-outline-light btn-lg px-4 mt-3" type="submit">Registrarse</button>

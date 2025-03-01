@@ -29,4 +29,16 @@ export class NavigationComponent implements OnInit {
     this.router.navigateByUrl('/login')
   }
 
+  buttonHome(){
+    this.router.navigateByUrl('/home/profesor/' + this.profesorID);
+  }
+
+  buttonListAlumnos(){
+    this.router.navigateByUrl('/home/alumnos');
+  }
+
+  buttonAddAlumnos(){
+    this.router.navigateByUrl('/home/alumnos/add');
+  }
+
 }

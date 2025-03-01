@@ -16,6 +16,7 @@ export class LoginComponent implements OnInit {
 
   profesor: Profesor
   usuario: Usuario
+  verPassword: boolean
 
   constructor(
     private router: Router,
@@ -24,6 +25,7 @@ export class LoginComponent implements OnInit {
   ){
     this.profesor = new Profesor()
     this.usuario = new Usuario()
+    this.verPassword = false
   }
 
   ngOnInit(): void {}
@@ -43,11 +45,16 @@ export class LoginComponent implements OnInit {
           position: 'center',
           icon: 'error',
           title: 'Datos Incorrectos'
-        })
+        });
       }
     },
       err => console.error(err)
     );
+  }
+
+  mostrarPassword(){
+    console.log('Ver contraseña');
+    this.verPassword = !this.verPassword;
   }
 
   registro(){
